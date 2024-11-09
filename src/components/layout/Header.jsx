@@ -43,10 +43,14 @@ export default function Header() {
 
                     {/* Cart and Mobile Menu Icons - Always visible */}
                     <div className="flex items-center space-x-4">
-                        <button className="text-gray-600 hover:text-[#24B9D7] focus:outline-none focus:ring-2 focus:ring-[#24B9D7] focus:ring-offset-2 p-2 rounded-md">
-                            <ShoppingCart className="h-6 w-6" />
-                            <span className="sr-only">Cart</span>
-                        </button>
+                       <div className="flex items-center space-x-4">
+      <Link to="/cart">
+        <button className="text-gray-600 hover:text-[#24B9D7] focus:outline-none focus:ring-2 focus:ring-[#24B9D7] focus:ring-offset-2 p-2 rounded-md">
+          <ShoppingCart className="h-6 w-6" />
+          <span className="sr-only">Cart</span>
+        </button>
+      </Link>
+    </div>
                         <button
                             className="lg:hidden text-gray-600 hover:text-[#24B9D7] focus:outline-none focus:ring-2 focus:ring-[#24B9D7] focus:ring-offset-2 p-2 rounded-md"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
