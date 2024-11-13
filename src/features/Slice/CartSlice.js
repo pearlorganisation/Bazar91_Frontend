@@ -1,22 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 
-// Load cart data from localStorage if available
-const loadCartFromLocalStorage = () => {
-  const storedCart = localStorage.getItem("cartData");
-  return storedCart ? JSON.parse(storedCart) : [];
-};
-
 const initialState = {
-  isLoading: false,
-  cartData: loadCartFromLocalStorage(),
-  error: "",
-  isSuccess: false,
-  isError: false,
-  message: "",
+  cartData: [],
+  totalPrice: 0,
 };
-
-
 
 const cartSlice = createSlice({
   name: "cart",
@@ -24,45 +12,42 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const item = action.payload;
-      const existingItem = state.cartData.find((cartItem) => cartItem.id === item.id);
-
-      const quantityToAdd = parseInt(item.quantity, 0) || 1;
+      const existingItem = state.cartData.find(cartItem => cartItem.id === item.id);
 
       if (existingItem) {
-        existingItem.quantity += quantityToAdd;
+        existingItem.quantity += 1;
       } else {
-        state.cartData.push({ ...item, quantity: quantityToAdd });
+        state.cartData.push({ ...item, quantity: 1 });
       }
 
-      saveCartToLocalStorage(state.cartData); // Save updated cart data to localStorage
+      // Calculate total price after addition
+      state.totalPrice = state.cartData.reduce((total, item) => total + item.originalPrice * item.quantity, 0);
       toast.success("Item added to cart!", { position: "top-center" });
-    },
-    removeFromCart: (state, action) => {
-      const itemId = action.payload;
-      state.cartData = state.cartData.filter((item) => item.id !== itemId);
-
-      saveCartToLocalStorage(state.cartData); 
-      toast.success("Item removed from cart!", { position: "top-center" });
-    },
-    clearCart: (state) => {
-      state.cartData = [];
-      saveCartToLocalStorage(state.cartData); 
-      toast.info("Cart cleared", { position: "top-center" });
     },
     decreaseQuantity: (state, action) => {
       const itemId = action.payload;
-      const item = state.cartData.find((item) => item.id === itemId);
+      const item = state.cartData.find(item => item.id === itemId);
 
       if (item && item.quantity > 1) {
-        item.quantity -= 1; // Decrease the quantity if it's greater than 1
-        saveCartToLocalStorage(state.cartData); // Save updated cart data to localStorage
-        toast.info("Item quantity decreased", { position: "top-center" });
-      } else if (item && item.quantity === 1) {
-        toast.warning("Cannot decrease quantity below 1", { position: "top-center" });
+        item.quantity -= 1;
+      } else {
+        state.cartData = state.cartData.filter(item => item.id !== itemId);
       }
+
+      // Calculate total price after decreasing quantity
+      state.totalPrice = state.cartData.reduce((total, item) => total + item.originalPrice * item.quantity, 0);
+      toast.info("Item quantity decreased", { position: "top-center" });
+    },
+    removeFromCart: (state, action) => {
+      const itemId = action.payload;
+      state.cartData = state.cartData.filter(item => item.id !== itemId);
+
+      // Calculate total price after removal
+      state.totalPrice = state.cartData.reduce((total, item) => total + item.originalPrice * item.quantity, 0);
+      toast.success("Item removed from cart!", { position: "top-center" });
     },
   },
 });
 
-export const { addToCart, removeFromCart, clearCart, decreaseQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, decreaseQuantity } = cartSlice.actions;
 export default cartSlice.reducer;

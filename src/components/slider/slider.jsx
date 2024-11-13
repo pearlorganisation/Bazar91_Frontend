@@ -9,6 +9,7 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import {useDispatch} from 'react-redux'
 import { addToCart } from '../../features/Slice/CartSlice';
+import { Link } from 'react-router-dom';
 export default function SimpleSlider() {
 
   const products = [
@@ -54,7 +55,7 @@ export default function SimpleSlider() {
     },
     {
       id: 1,
-      image: 'path-to-image-1.jpg', // Replace with actual image path or URL
+      image: 'path-to-image-1.jpg', 
       title: 'Fortune Black Gold 10 inch PVC Safety Work Boots',
       price: 219,
       originalPrice: 250,
@@ -115,11 +116,11 @@ export default function SimpleSlider() {
           },
           768: {
             slidesPerView: 4,
-            spaceBetween: 40,
+            spaceBetween: 25,
           },
           1024: {
             slidesPerView: 5,
-            spaceBetween: 50,
+            spaceBetween: 30,
           },
         }}
         modules={[Pagination]}
@@ -127,20 +128,23 @@ export default function SimpleSlider() {
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            
-            <div className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center px-5 py-5">
-                <div>
+         
+            <div className="w-60 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center px-5 py-5" >
+
+
+                <div >
+                <Link to={`/product/${product.id}`}>
               <img
                 src={product.image}
                 alt={product.title}
-                className="w-48 h-48 object-cover mb-4 rounded-md"
+                className="w-40 h-40 object-cover rounded-md"
               />
-              <h3 className="text-lg font-semibold text-gray-800 mb-2 text-wrap">{product.title}</h3>
+              <h3 className="text-base font-semibold text-gray-800 mb-2 text-wrap">{product.title}</h3>
               <div className="flex items-center justify-center space-x-2 mb-2">
                 <span className="text-red-600 font-bold text-xl">₹{product.price}</span>
                 <span className="text-gray-500 line-through text-sm">₹{product.originalPrice}</span>
                 <span className="text-green-600 text-sm">{product.discount}</span>
-              </div>
+              </div></Link>
               <button className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300" onClick={()=>{
 handleCart(product)
               }} >
