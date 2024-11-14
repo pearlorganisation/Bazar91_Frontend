@@ -23,11 +23,11 @@ const BannerSlider = ({ imgArray, tabs }) => {
   return (
     <div className="flex flex-col items-center w-full mt-4">
       {/* Main Slider */}
-      <div className="w-full  sm:w-[600px] md:w-[900px] lg:w-[1050px] relative">
+      <div className="w-full gap-4  sm:w-[600px] md:w-[900px] lg:w-[1050px] relative">
         <Slider ref={sliderRef} {...settings}>
           {imgArray.map((item, index) => (
             <img
-              className="rounded-t-lg w-full h-auto"
+              className="rounded-t-lg w-full h-28 lg:h-auto"
               alt="slide"
               key={index}
               src={item.imgUrl}
@@ -37,21 +37,21 @@ const BannerSlider = ({ imgArray, tabs }) => {
       </div>
 
       {/* Thumbnail Section */}
-      <div className="w-full flex text-center overflow-x-hidden">
+      <div className="w-full flex-col gap-1  sm:flex-row lg:flex-row flex text-center overflow-x-hidden">
         {tabs.map((item, index) => (
           <div
             onMouseEnter={() => handleBottomImageClick(index)}
             key={index}
-            className={`w-full cursor-pointer ${
-              currentSlide === index ? "border-b-2 border-red-500" : ""
+            className={`w-full cursor-pointer lg:bg-[#ffffff] ${
+              currentSlide === index ? "lg:border-b-2 bg-[#96B8EE] lg:bg-[#ffffff]  lg:border-red-500" : ""
             }`}
           >
             <div
-              className="border border-grey overflow-hidden"
+              className="border border-grey overflow-hidden p-2"
               style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
             >
               <div className=" text-xs md:font-semibold lg:text-gray-800  text-wrap">{item.label}</div>
-              <div className="text-xs lg:text-sm text-gray-500 overflow-hidden">{item.subtext}</div>
+              <div className="text-xs lg:text-sm text-black lg:text-gray-500 overflow-hidden">{item.subtext}</div>
             </div>
           </div>
         ))}
@@ -61,17 +61,17 @@ const BannerSlider = ({ imgArray, tabs }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-4 py-4">
   <img
-    src="https://cdn.moglix.com/cms/utility/1724330059100-wLte8NVmC7JRgjtZC6Ikttgq.jpg"
+    src="https://cdn.moglix.com/cms/flyout/Image_2024-11-12_10:16:54.389_desktop-gold-candes.jpg"
     alt="Promo 1"
     className="w-full h-28 sm:h-36 md:h-28  lg:w-96 object-cover rounded-lg"
   />
   <img
-    src="https://cdn.moglix.com/cms/utility/1724330060225-BvIr34SA0l5Uyt7T6Gdda1Jw.jpg"
+    src="https://cdn.moglix.com/cms/flyout/Image_2024-11-14_10:57:54.403_Gold-Desktop.jpg"
     alt="Promo 2"
     className="w-full h-28 sm:h-36 md:h-28 md:w-full lg:w-96  object-cover rounded-lg"
   />
   <img
-    src="https://cdn.moglix.com/cms/utility/1724330060225-BvIr34SA0l5Uyt7T6Gdda1Jw.jpg"
+    src="https://cdn.moglix.com/cms/flyout/Image_2024-11-14_10:57:54.927_desktop-gold-vinspire.jpg"
     alt="Promo 3"
     className="w-full h-28 sm:h-36 md:h-28   lg:w-96 object-cover rounded-lg"
   />

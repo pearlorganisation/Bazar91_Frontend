@@ -4,6 +4,7 @@ import { toast } from "sonner";
 const initialState = {
   cartData: [],
   totalPrice: 0,
+  isSidebarOpen:false
 };
 
 const cartSlice = createSlice({
@@ -24,6 +25,7 @@ const cartSlice = createSlice({
       state.totalPrice = state.cartData.reduce((total, item) => total + item.originalPrice * item.quantity, 0);
       toast.success("Item added to cart!", { position: "top-center" });
     },
+    
     decreaseQuantity: (state, action) => {
       const itemId = action.payload;
       const item = state.cartData.find(item => item.id === itemId);
@@ -46,6 +48,13 @@ const cartSlice = createSlice({
       state.totalPrice = state.cartData.reduce((total, item) => total + item.originalPrice * item.quantity, 0);
       toast.success("Item removed from cart!", { position: "top-center" });
     },
+
+
+
+    togglesidebar: (state) => {
+
+      state.isSidebarOpen=!state.isSidebarOpen
+    }
   },
 });
 

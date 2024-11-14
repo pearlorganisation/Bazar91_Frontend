@@ -10,6 +10,13 @@ import { Pagination } from 'swiper/modules';
 import {useDispatch} from 'react-redux'
 import { addToCart } from '../../features/Slice/CartSlice';
 import { Link } from 'react-router-dom';
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+
+
+// import required modules
+import { Navigation } from 'swiper/modules';
 export default function SimpleSlider() {
 
   const products = [
@@ -103,14 +110,23 @@ export default function SimpleSlider() {
 
   return (
     <>
+    <div className='relative p-2'>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
-        pagination={{
-          clickable: true,
-        }}
+        // pagination={{
+        //   type: 'fraction',
+        // }}
         breakpoints={{
           640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          540: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          480:{
             slidesPerView: 2,
             spaceBetween: 20,
           },
@@ -123,13 +139,17 @@ export default function SimpleSlider() {
             spaceBetween: 30,
           },
         }}
-        modules={[Pagination]}
+        navigation={{
+          prevEl: '.swiper-button-prev',
+          nextEl: '.swiper-button-next',
+        }}
+        modules={[ Navigation]}
         className="mySwiper"
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
          
-            <div className="w-60 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center px-5 py-5" >
+            <div className="w-60 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center px-5 py-5"  >
 
 
                 <div >
@@ -154,6 +174,9 @@ handleCart(product)
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="swiper-button-prev absolute  !text-gray-500 "></div>
+<div className="swiper-button-next absolute sm:mr-4 !text-gray-500"></div>
+</div>
     </>
   );
 }

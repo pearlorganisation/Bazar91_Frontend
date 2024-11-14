@@ -96,7 +96,7 @@ function LandingPage() {
         {/* Subcategories Sidebar */}
         {hoveredCategory && (
           <aside
-            className="w-1/4 bg-gray-50 shadow-md absolute top-0 left-60 ml-2 mt-20 z-20"
+            className="w-1/4 bg-gray-50 shadow-md absolute top-0 left-60 ml-2 mt-[90px] z-20"
             onMouseEnter={() => setHoveredCategory(hoveredCategory)}
             onMouseLeave={() => setHoveredCategory(null)}
           >
@@ -124,7 +124,7 @@ function LandingPage() {
 
         {/* Items Sidebar */}
         {hoveredSubcategory && (
-          <div className="w-1/4 bg-gray-50 shadow-md absolute top-0 left-[40%] mt-16 z-20">
+          <div className="w-1/4 bg-gray-50 shadow-md absolute top-0  left-[40%] mt-[90px] z-20">
             <ul>
               {categories
                 .find((category) => category.name === hoveredCategory)
@@ -145,6 +145,7 @@ function LandingPage() {
       <div className="px-10 py-5">
         <h1 className="text-black text-2xl font-bold mb-3">Best Sellers</h1>
         <SimpleSlider />
+    
       </div>
     </>
   );

@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Swiper Navigation Button Styling */
+.swiper-button-next,
+.swiper-button-prev {
+  @apply text-gray-800 text-lg w-6 h-6;
+  color: #333; /* Set button color */
+  width: 25px;
+  height: 25px;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px; /* Set icon font size */
+}
