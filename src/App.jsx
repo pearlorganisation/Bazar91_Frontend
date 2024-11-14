@@ -40,6 +40,7 @@ function App() {
           path: '/profile',
           element: <ProfilePage/>,
         }
+        
       ]
     },
   ]);
