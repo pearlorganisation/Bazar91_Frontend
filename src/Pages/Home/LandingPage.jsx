@@ -79,20 +79,12 @@ function LandingPage() {
 
   return (
     <>
-      <div className="flex h-auto  bg-gray-100">
-        {/* Hamburger Icon */}
-        <div className="absolute top-4 left-4 z-30 lg:hidden">
-          <button
-            className="text-2xl text-black"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-          >
-            &#9776; {/* Hamburger icon */}
-          </button>
-        </div>
+      <div className="grid grid-cols-[20rem_auto] lg:grid-cols-[20rem_auto] sm:grid-cols-[56rem_auto] h-auto  w-full  bg-gray-100">
+    
 
         {/* Sidebar */}
         <div
-          className={`lg:w-1/4 w-full bg-white shadow-md mt-4 transition-transform duration-300 ease-in-out ${
+          className={`w-full  gap-4  hidden bg-white shadow-md mt-4 transition-transform duration-300 ease-in-out ${
             isSidebarVisible ? "transform-none" : "transform -translate-x-full"
           } lg:transform-none lg:translate-x-0 lg:block fixed lg:relative`}
         >
@@ -124,7 +116,7 @@ function LandingPage() {
         {/* Subcategories Sidebar */}
         {hoveredCategory && (
           <aside
-            className="w-1/4 bg-gray-50 shadow-md absolute top-0 left-60 ml-2 mt-[90px] z-20"
+            className="w-1/4 bg-gray-50 shadow-md absolute top-0 left-60  mt-[90px] z-20"
             onMouseEnter={() => setHoveredCategory(hoveredCategory)}
             onMouseLeave={() => setHoveredCategory(null)}
           >

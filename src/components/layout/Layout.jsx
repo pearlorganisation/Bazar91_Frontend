@@ -11,7 +11,7 @@ const Layout = () => {
     <div>
       <Header />
       <div
-        className={` absolute lg:hidden top-0 z-50 h-screen w-96 bg-white duration-300 transition-all ease-in-out ${
+        className={` absolute lg:hidden top-0 z-50 h-screen w-96 bg-white duration-300 transition-all ease-in-out mt-20 ${
           isSidebarOpen ? "left-0 " : "-left-96"
         }`}
       >
