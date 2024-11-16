@@ -27,84 +27,78 @@ const categories = [
 ];
 
 function NestedSidebar() {
-  const [hoveredCategory, setHoveredCategory] = useState(null);
-  const [hoveredSubcategory, setHoveredSubcategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category.name === selectedCategory ? null : category.name);
+    setSelectedSubcategory(null); // Reset subcategory on new category selection
+  };
+
+  const handleSubcategoryClick = (subcategory) => {
+    setSelectedSubcategory(subcategory.name === selectedSubcategory ? null : subcategory.name);
+  };
 
   return (
     <div className="flex bg-gray-100 min-h-screen">
-      {/* Primary Sidebar */}
-      <aside className="w-1/4 bg-white shadow-md">
+      {/* Sidebar */}
+      <aside className="w-full bg-white shadow-md">
         <ul>
           {categories.map((category, index) => (
-            <li
-              key={index}
-              className={`flex items-center py-3 px-2 rounded hover:bg-gray-200 cursor-pointer ${
-                category.isHighlighted ? 'text-red-500 font-semibold' : 'text-gray-700'
-              } ${hoveredCategory === category.name ? 'bg-gray-200' : ''}`}
-              onMouseEnter={() => {
-                setHoveredCategory(category.name);
-                setHoveredSubcategory(null); // Reset subcategory on hover of new category
-              }}
-              onMouseLeave={() => setHoveredCategory(null)}
-            >
-              <span className="text-xl mr-3">{category.icon}</span>
-              <span className="text-sm">{category.name}</span>
-              {category.subcategories.length > 0 && (
-                <span className="ml-auto text-gray-500">›</span>
+            <li key={index}>
+              <div
+                className={`flex items-center py-3 px-2 rounded hover:bg-gray-200 cursor-pointer ${
+                  category.isHighlighted ? 'text-red-500 font-semibold' : 'text-gray-700'
+                } ${selectedCategory === category.name ? 'bg-gray-200' : ''}`}
+                onClick={() => handleCategoryClick(category)}
+              >
+                <span className="text-xl mr-3">{category.icon}</span>
+                <span className="text-sm">{category.name}</span>
+                {category.subcategories.length > 0 && (
+                  <span className="ml-auto text-gray-500">
+                    {selectedCategory === category.name ? '▼' : '›'}
+                  </span>
+                )}
+              </div>
+              {/* Render Subcategories Inline */}
+              {selectedCategory === category.name && category.subcategories.length > 0 && (
+                <ul className="ml-8">
+                  {category.subcategories.map((subcategory, subIndex) => (
+                    <li key={subIndex}>
+                      <div
+                        className={`flex items-center py-2 px-2 hover:bg-gray-200 cursor-pointer rounded ${
+                          selectedSubcategory === subcategory.name ? 'bg-gray-200' : ''
+                        }`}
+                        onClick={() => handleSubcategoryClick(subcategory)}
+                      >
+                        <span className="text-sm text-gray-700">{subcategory.name}</span>
+                        {subcategory.items.length > 0 && (
+                          <span className="ml-auto text-gray-500">
+                            {selectedSubcategory === subcategory.name ? '▼' : '›'}
+                          </span>
+                        )}
+                      </div>
+                      {/* Render Items Inline */}
+                      {selectedSubcategory === subcategory.name && (
+                        <ul className="ml-8">
+                          {subcategory.items.map((item, itemIndex) => (
+                            <li
+                              key={itemIndex}
+                              className="py-2 px-2 hover:bg-gray-200 cursor-pointer rounded"
+                            >
+                              <span className="text-sm text-gray-700">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               )}
             </li>
           ))}
         </ul>
       </aside>
-
-      {/* Secondary Sidebar (Subcategories) */}
-      {hoveredCategory && (
-        <aside
-          className="w-1/4 bg-gray-50 shadow-md"
-          onMouseEnter={() => setHoveredCategory(hoveredCategory)}
-          onMouseLeave={() => setHoveredCategory(null)}
-        >
-          <ul>
-            {categories
-              .find((category) => category.name === hoveredCategory)
-              ?.subcategories.map((subcategory, index) => (
-                <li
-                  key={index}
-                  className={`py-2 px-2 hover:bg-gray-200 cursor-pointer rounded ${
-                    hoveredSubcategory === subcategory.name ? 'bg-gray-200' : ''
-                  }`}
-                  onMouseEnter={() => setHoveredSubcategory(subcategory.name)}
-                  onMouseLeave={() => setHoveredSubcategory(null)}
-                >
-                  <span className="text-sm text-gray-700">{subcategory.name}</span>
-                  {subcategory.items.length > 0 && (
-                    <span className="ml-auto text-gray-500">›</span>
-                  )}
-                </li>
-              ))}
-          </ul>
-        </aside>
-      )}
-
-      {/* Tertiary Sidebar (Items) */}
-      {hoveredSubcategory && (
-        <aside
-          className="w-1/4 bg-gray-50 shadow-md"
-          onMouseEnter={() => setHoveredSubcategory(hoveredSubcategory)}
-          onMouseLeave={() => setHoveredSubcategory(null)}
-        >
-          <ul>
-            {categories
-              .find((category) => category.name === hoveredCategory)
-              ?.subcategories.find((subcat) => subcat.name === hoveredSubcategory)
-              ?.items.map((item, index) => (
-                <li key={index} className="py-2 px-2 hover:bg-gray-200 cursor-pointer rounded">
-                  <span className="text-sm text-gray-700">{item}</span>
-                </li>
-              ))}
-          </ul>
-        </aside>
-      )}
     </div>
   );
 }
