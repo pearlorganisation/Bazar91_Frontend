@@ -3,12 +3,14 @@ import { FaCheckCircle, FaTruck, FaMoneyCheckAlt } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import { addToCart } from '../../features/Slice/CartSlice';
+import ProductModal from '../../components/Modal/ProductModal';
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [pinCode, setPinCode] = useState('');
   const [deliveryCheck, setDeliveryCheck] = useState(null);
   const [product, setProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 const dispatch=useDispatch()
   const { id } = useParams(); // Get product id from URL params
 
@@ -41,6 +43,10 @@ const dispatch=useDispatch()
   if (!product) {
     return <div>Loading...</div>; // Show loading until the product data is available
   }
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 p-6 bg-gray-100">
@@ -50,13 +56,13 @@ const dispatch=useDispatch()
           <img
             src={product.image}
             alt={product.title}
-            className="w-full h-[400px] object-cover"
+            className="w-full h-full object-cover"
           />
           <div className="flex gap-2 overflow-x-auto mt-4">
             <img
               src={product.image}
               alt="Product preview"
-              className="w-[80px] h-[80px] object-cover border rounded-md "
+              className="w-[80px] h-[80px]  border rounded-md "
             />
             {/* You can add more product images here if needed */}
           </div>
@@ -112,19 +118,8 @@ handleCart(product)}}>Add to Cart</button>
 
         {/* Delivery Details */}
         <div className="border p-4 rounded-lg space-y-4">
-          <div className="flex items-center">
-            <input
-              type="text"
-              placeholder="Enter Pincode"
-              value={pinCode}
-              onChange={(e) => setPinCode(e.target.value)}
-              className="p-2 border rounded-lg"
-            />
-            <button onClick={handlePinCheck} className="ml-2 px-4 py-2 bg-yellow-500 rounded-lg">
-              Check
-            </button>
-          </div>
-          {deliveryCheck && (
+        
+          {/* {deliveryCheck && (
             <div className="space-y-2">
               <p className="flex items-center text-green-600">
                 <FaTruck className="mr-2" /> Free Delivery
@@ -133,7 +128,14 @@ handleCart(product)}}>Add to Cart</button>
                 <FaMoneyCheckAlt className="mr-2" /> COD Available
               </p>
             </div>
-          )}
+          )} */}
+          <p className='text-wrap'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, alias. Nobis, doloremque ipsa. Nemo sunt, voluptatem eius quos at suscipit rerum in deserunt delectus distinctio unde! Culpa fuga ipsa vel?Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore vero optio libero, odio quia minima perspiciatis corporis qui dignissimos illo. Omnis ad consequatur magni expedita vel ullam! Animi, exercitationem corporis.</p>
+          <span> 
+          <span  className='text-blue-500'      onClick={() => setIsModalOpen(true)}>Readmore</span>
+          {isModalOpen && <ProductModal  onClose={closeModal} />}
+    </span>
+
+
         </div>
       </div>
     </div>

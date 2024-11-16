@@ -174,6 +174,7 @@ function LandingPage() {
       <div className="px-10 py-5">
         <h1 className="text-black text-2xl font-bold mb-3">Best Sellers</h1>
         <SimpleSlider />
+        
       </div>
     </>
   );

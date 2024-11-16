@@ -56,18 +56,7 @@ export default function Header() {
               </Link>
             </nav>
           )}
-          {
-            authenticationData?.email && (
-                <button
-                onClick={()=>{
-                    dispatch(logout());
-                }}
-                className="text-gray-600 hover:text-[#24B9D7] font-medium"
-              >
-                Logout
-              </button>
-            )
-          }
+          
 
           {/* Cart and Mobile Menu Icons - Always visible */}
           <div className="flex items-center space-x-4   relative">
