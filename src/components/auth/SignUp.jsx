@@ -123,7 +123,7 @@ export default function SignUp() {
                   type="radio"
                   id="male"
                   {...register('gender', { required: 'Gender is required' })}
-                  value="male"
+                  value="M"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                 />
                 <label htmlFor="male" className="ms-2 text-sm font-medium text-gray-900">Male</label>
@@ -132,7 +132,7 @@ export default function SignUp() {
                   type="radio"
                   id="female"
                   {...register('gender', { required: 'Gender is required' })}
-                  value="female"
+                  value="F"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ml-4"
                 />
                 <label htmlFor="female" className="ms-2 text-sm font-medium text-gray-900">Female</label>
