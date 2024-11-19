@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-
+import { IoMdCloseCircle } from "react-icons/io";
 // Key Features Component
 function KeyFeatures() {
   return (
@@ -16,7 +16,8 @@ function KeyFeatures() {
 }
 
 // Specifications Component
-function Descripition() {
+function Description() {
+
   return (
     <div>
       <h2 className="text-xl font-bold">Descripition</h2>
@@ -52,6 +53,7 @@ function ProductDetails() {
         is designed to meet the needs of modern users and offers exceptional
         value.
       </p>
+      <p>Illuminate Your Outdoor Spaces with the Egk 200W Cool White Led Flood Light, the Ultimate Solution for Bright, Energy-Efficient Lighting. Designed to Withstand the Elements, This Flood Light Boasts An Ip66 Waterproof Rating, Ensuring Reliable Performance In Any Weather Condition. with Its High Beam Output, It Delivers Unparalleled Brightness Ideal for Garages, Parking Lots, Gardens, & Playgrounds,</p>
     </div>
   );
 }
@@ -106,38 +108,39 @@ function Images() {
 
   // Get the currently selected product
   const selectedProduct = products[selectedProductIndex];
-
   return (
     <div className="w-full lg:w-full">
-      <div className="p-4 flex  flex-col md:flex-row-reverse  justify-between  w-full">
+      <div className="p-4 flex flex-col md:flex-row-reverse justify-between w-full">
         {/* Main Product Image */}
-        <div className="w-full mb-4">
-          <img
-            src={selectedProduct.image}
-            alt={selectedProduct.title}
-            className="w-full h-full object-cover rounded-md"
-          />
-        </div>
-        {/* Thumbnail Gallery */}
-        <div className="flex gap-2 flex-row ">
+        <div className="w-full max-w-4xl  mb-4 ">
+  <div className="relative w-full h-[400px] ">
+    <img
+      src={selectedProduct.image}
+      alt={selectedProduct.title}
+      className="w-auto h-full object-contain rounded-md"
+    />
+  </div>
+</div>
+
+  
+     <div>   {/* Thumbnail Gallery */}
+        <div className="flex gap-2 flex-row overflow-x-auto">
           {products.map((product, index) => (
             <img
               key={product.id}
               src={product.image}
               alt={`Product preview ${index + 1}`}
-              className={`w-[200px] h-[80px] border rounded-md cursor-pointer ${
+              className={`w-[100px] h-[80px] border rounded-md cursor-pointer ${
                 index === selectedProductIndex ? "border-red-500" : "border-gray-300"
               }`}
-              onClick={() => setSelectedProductIndex(index)} // Switch to the clicked product
+              onClick={() => setSelectedProductIndex(index)} 
             />
-          ))}
+          ))}</div>
         </div>
-     
       </div>
     </div>
   );
-}
-
+}  
 
 
 function ProductModal({onClose}) {
@@ -147,8 +150,8 @@ function ProductModal({onClose}) {
       switch (activeTab) {
         case "Key Features":
           return <KeyFeatures />;
-        case "Descripition":
-          return <Descripition/>;
+        case "Description":
+          return <Description/>;
 
         case "Product Details":
           return <ProductDetails />;
@@ -165,10 +168,11 @@ function ProductModal({onClose}) {
         >
        
           <div
-            className="bg-white w-full md:max-w-4xl lg:h-[80%] rounded-lg shadow-lg  flex flex-col relative"
+            className="bg-white w-full md:max-w-4xl lg:h-[90%] rounded-lg shadow-lg  flex flex-col relative"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
           >
-                       <div className=" absolute top-2 right-5 bg-[#3C3C3C] rounded-full px-4  py-2   text-center text-sm text-white">x</div>         {/* Tabs */}
+                       <div className=" absolute top-2 right-5 rounded-full px-4  py-2   text-center text-sm" onClick={onClose} >
+                       <IoMdCloseCircle className="" size={25} /></div>         {/* Tabs */}
             <div className="flex border-b border-gray-300 mt-20">
 
               <button

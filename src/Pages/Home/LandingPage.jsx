@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import BannerSlider from "../../components/slider/BannerSlider";
 import Slider from "react-slick";
 import SimpleSlider from "../../components/slider/slider";
-
 const categories = [
   {
-    name: "Office Stationery & Supplies",
+    name: "All Brands",
     icon: "📄",
     subcategories: [
       {
-        name: "Printers",
+        name: "Bernena",
         items: [
           "Ink Tank Printer",
           "Laser Printer",
@@ -18,26 +17,71 @@ const categories = [
           "Barcode Printers",
         ],
       },
-      { name: "Mobiles", items: [] },
-      { name: "CCTV Cameras", items: [] },
-      { name: "Chairs", items: [] },
-      { name: "Audio & Video", items: [] },
+      { name: "Brothers", items: [] },
+      { name: "Bruce", items: [] },
+      { name: "Butterfly", items: [] },
+      { name: "Fortever", items: [] },
+      { name: "Futton", items: [] },
+      { name: "Generic", items: [] },
     ],
   },
-  { name: "Electrical Tools & Appliances", icon: "🔌", subcategories: [] },
-  { name: "Industrial Tools & Equipment", icon: "⚙️", subcategories: [] },
-  { name: "Agriculture & Farming Equipment", icon: "🌾", subcategories: [] },
-  { name: "Medical, Hospital & Lab Supplies", icon: "🩺", subcategories: [] },
-  { name: "Automotive Supplies", icon: "🚗", subcategories: [] },
-  { name: "Safety Supplies", icon: "🛡️", subcategories: [] },
-  { name: "Building & Construction Supplies", icon: "🏗️", subcategories: [] },
-  { name: "Packaging & Material Handling", icon: "📦", subcategories: [] },
   {
-    name: "View All Categories",
-    icon: "📁",
-    subcategories: [],
-    isHighlighted: true,
+    name: "Sewing Machine",
+    icon: "📄",
+    subcategories: [
+      {
+        name: "Industrial",
+        items: [
+          "Ink Tank Printer",
+          "Laser Printer",
+          "Inkjet Printer",
+          "Thermal Printer",
+          "Barcode Printers",
+        ],
+      },
+      { name: "Sewing Accessories", items: [] },
+      { name: "Home Demo", items: [] },
+      { name: "Sewing Classes", items: [] },
+      { name: "FlatLock", items: [] },
+    ],
   },
+  {
+    name: "Sewing Embroidery",
+    icon: "📄",
+    subcategories: [
+      {
+        name: "Industrial",
+        items: [
+          "Ink Tank Printer",
+          "Laser Printer",
+          "Inkjet Printer",
+          "Thermal Printer",
+          "Barcode Printers",
+        ],
+      },
+      { name: "Sewing Accessories", items: [] },
+      { name: "Home Demo", items: [] },
+      { name: "Sewing Classes", items: [] },
+      { name: "FlatLock", items: [] },
+    ],
+  },
+  {
+    name: "Embroidery Design Life",
+    icon: "📄",
+    subcategories: [
+      { name: "Free Design", items: [] },
+      { name: "Paid Design", items: [] },
+      { name: "All Design", items: [] },
+      { name: "Software", items: [] },
+    ],
+  },
+  { name: "Videos", icon: "🔌", subcategories: [] },
+  { name: "India Mart", icon: "🔌", subcategories: [] },
+  { name: "JustDial", icon: "🔌", subcategories: [] },
+  { name: "Blog", icon: "🔌", subcategories: [] },
+
+
+
 ];
 
 const cardData = {
@@ -79,7 +123,7 @@ function LandingPage() {
 
   return (
     <>
-      <div className="grid grid-cols-[20rem_auto] lg:grid-cols-[20rem_auto] sm:grid-cols-[56rem_auto] h-auto  w-full  bg-gray-100">
+      <div className="grid grid-cols-[20rem_auto] lg:grid-cols-[20rem_auto] sm:grid-cols-[56rem_auto] h-auto  w-full overflow-hidden bg-gray-100">
     
 
         {/* Sidebar */}
@@ -106,7 +150,7 @@ function LandingPage() {
                 <span className="text-xl">{category.icon}</span>
                 <span className="text-sm">{category.name}</span>
                 {category.subcategories.length > 0 && (
-                  <span className=" text-gray-500">›</span>
+                  <span className=" text-gray-500">›  </span>
                 )}
               </li>
             ))}

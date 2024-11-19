@@ -153,7 +153,7 @@ export default function SimpleSlider() {
               spaceBetween: 20,
             },
             768: {
-              slidesPerView: 4,
+              slidesPerView: 3,
               spaceBetween: 25,
             },
             1024: {
@@ -170,7 +170,7 @@ export default function SimpleSlider() {
         >
           {products.map((product) => (
             <SwiperSlide key={product.id}>
-              <div className="w-60 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center px-5 py-5">
+              <div className="w-60 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center px-5 py-5 ">
                 <div>
                   <Link to={`/product/${product.id}`}>
                     <img

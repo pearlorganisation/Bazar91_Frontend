@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { togglesidebar } from "../../features/Slice/CartSlice";
+import { TbLogin2 } from "react-icons/tb";
 
 export default function Header() {
 
@@ -43,9 +44,9 @@ export default function Header() {
           <nav className="hidden lg:flex items-center space-x-4">
             <Link
               to="/signIn"
-              className="text-gray-600 hover:text-[#24B9D7] font-medium"
+              className="text-gray-600 hover:text-[#24B9D7] font-medium flex flex-row items-center"
             >
-              Login
+            <div><TbLogin2 size={30} className="text-gray-600 hover:text-[#24B9D7] font-medium" /></div> <div className="text-gray-600 hover:text-[#24B9D7] font-medium text-xl ">Login</div>
             </Link>
             <Link
               to="/signUp"

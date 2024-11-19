@@ -1,13 +1,15 @@
-import './App.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from './components/layout/Layout';
-import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SignUp';
-import LandingPage from './Pages/Home/LandingPage';
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
+import LandingPage from "./Pages/Home/LandingPage";
 
-import ProductDetail from './Pages/product/product';
-import Cart from './Pages/cart/cart';
-import ProfilePage from './Pages/Profile/Profile';
+import ProductDetail from "./Pages/product/product";
+import Cart from "./Pages/cart/cart";
+import ProfilePage from "./Pages/Profile/Profile";
+import BrandListing from "./Pages/Brands/BrandListingPage";
+import MyOrdersPage from "./Pages/Order/order";
 
 function App() {
   const routes = createBrowserRouter([
@@ -16,32 +18,39 @@ function App() {
       element: <Layout />,
       children: [
         {
-          index: true, 
+          index: true,
           element: <LandingPage />,
         },
         {
-          path: '/signUp',
+          path: "/signUp",
           element: <SignUp />,
         },
         {
-          path: '/product/:id',
+          path: "/product/:id",
           element: <ProductDetail />,
         },
         {
-          path: '/signIn',
+          path: "/signIn",
           element: <SignIn />,
         },
         {
-          path: '/cart',
+          path: "/cart",
           element: <Cart />,
-        }
-        ,
+        },
         {
-          path: '/profile',
-          element: <ProfilePage/>,
-        }
-        
-      ]
+          path: "/profile",
+          element: <ProfilePage />,
+        },
+
+        {
+          path: "/brandlist",
+          element: <BrandListing />,
+        },
+        {
+          path: "/order",
+          element: <MyOrdersPage />,
+        },
+      ],
     },
   ]);
 
