@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBrands } from '../../features/actions/Brand/brandAction';
 
 const BrandListing = () => {
   const [filters, setFilters] = useState({
@@ -6,7 +8,12 @@ const BrandListing = () => {
     price: 300,
     rating: 3,
   });
-
+  const dispatch=useDispatch()
+  const brand= useSelector(state=>state.brands)
+console.log("bran d",brand)
+useEffect(()=>{
+  dispatch(getBrands())
+},[])
   const handleCategoryChange = (category) => {
     console.log("category",category)
     setFilters((prevFilters) => {
@@ -33,7 +40,7 @@ const BrandListing = () => {
 
   const brands = [
     {
-      img: 'https://cdn.moglix.com/cms/flyout/Images_2024-09-19_16-46-58_L0-NDD_Desktop%201.jpg',
+      img: 'https://bazar91.com/2427-home_default/omkar-tailor-ordinary-presser-foot-p351-teflon-presser-foot-t35-left-presser-foot-p36n-right-presser-foot.jpg',
       name: 'Brand ',
       category: 'Category A',
       price: 150,
@@ -41,7 +48,7 @@ const BrandListing = () => {
       description: 'Brand Alpha offers premium quality products for every need.',
     },
     {
-      img: 'https://cdn.moglix.com/cms/flyout/Image_2024-11-06_10:34:14.830_platinumNBC_desktop.jpg',
+      img: 'https://bazar91.com/1756-home_default/bernina-b-500-embroidery-machine.jpg',
       name: 'Brand 1',
       category: 'Category B',
       price: 250,
@@ -49,7 +56,7 @@ const BrandListing = () => {
       description: 'Discover the innovative solutions provided by Brand Beta.',
     },
     {
-      img: 'https://cdn.moglix.com/cms/utility/1729576611017-TzKF8qN80dsUYmO8Mhi24CeC.png',
+      img: 'https://bazar91.com/1859-home_default/ricoma-em-1010-single-head-computerized-embroidery-machine.jpg',
       name: 'Brand 2',
       category: 'Category A',
       price: 300,
@@ -57,7 +64,7 @@ const BrandListing = () => {
       description: 'Brand Gamma combines style and functionality in all its offerings.',
     },
     {
-      img: 'https://cdn.moglix.com/cms/flyout/Image_2024-11-14_10:57:54.927_desktop-gold-vinspire.jpg',
+      img: 'https://bazar91.com/2734-home_default/brother-pr1-single-head-embroidery-machine.jpg',
       name: 'Brand  3 ',
       category: 'Category C',
       price: 400,
@@ -65,7 +72,7 @@ const BrandListing = () => {
       description: 'Explore the diverse range of products from Brand .',
     },
     {
-      img: 'https://cdn.moglix.com/cms/flyout/Image_2024-11-14_10:57:54.403_Gold-Desktop.jpg',
+      img: 'https://bazar91.com/131-home_default/memory-craft-200e-digitizer-jr.jpg',
       name: 'Brand Epsilon',
       category: 'Category B',
       price: 100,
@@ -88,7 +95,7 @@ const BrandListing = () => {
   <>
 
 
-  <div className='flex flex-col' ><img src={bannerimg} alt="" className='w-full h-96' />
+  <div className='flex flex-col' ><img src="https://bazar91.com/modules/ps_imageslider/images/sample-3.jpg" alt="" className='w-full h-96' />
   <div className="self-center text-2xl font-extrabold text-gray-800 mt-5 tracking-tight leading-snug ">
   New Brand
 </div>

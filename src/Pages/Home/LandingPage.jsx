@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import BannerSlider from "../../components/slider/BannerSlider";
 import Slider from "react-slick";
 import SimpleSlider from "../../components/slider/slider";
+import { FaVideo, FaStore, FaBlog } from "react-icons/fa";
+import { GiSewingMachine } from "react-icons/gi";
+import { MdOutlineBrush, MdPhoneInTalk } from "react-icons/md";
+import { AiOutlineAppstore } from "react-icons/ai";
+import { RiScissorsCutLine } from "react-icons/ri";
 const categories = [
   {
     name: "All Brands",
-    icon: "📄",
+    icon: <AiOutlineAppstore style={{ color: "#4CAF50" }} />, // Green color
     subcategories: [
       {
         name: "Bernena",
@@ -27,7 +32,7 @@ const categories = [
   },
   {
     name: "Sewing Machine",
-    icon: "📄",
+    icon: <GiSewingMachine style={{ color: "#FF5722" }} />, // Orange color
     subcategories: [
       {
         name: "Industrial",
@@ -47,7 +52,7 @@ const categories = [
   },
   {
     name: "Sewing Embroidery",
-    icon: "📄",
+    icon: <RiScissorsCutLine style={{ color: "#2196F3" }} />, // Blue color
     subcategories: [
       {
         name: "Industrial",
@@ -67,7 +72,7 @@ const categories = [
   },
   {
     name: "Embroidery Design Life",
-    icon: "📄",
+    icon: <MdOutlineBrush style={{ color: "#9C27B0" }} />,
     subcategories: [
       { name: "Free Design", items: [] },
       { name: "Paid Design", items: [] },
@@ -75,14 +80,16 @@ const categories = [
       { name: "Software", items: [] },
     ],
   },
-  { name: "Videos", icon: "🔌", subcategories: [] },
-  { name: "India Mart", icon: "🔌", subcategories: [] },
-  { name: "JustDial", icon: "🔌", subcategories: [] },
-  { name: "Blog", icon: "🔌", subcategories: [] },
+  { name: "Videos",  icon: <FaVideo style={{ color: "#B91D1D" }} />, subcategories: [] },
+  { name: "India Mart",   icon: <FaStore style={{ color: "#2196F3" }} />, subcategories: [] },
+  { name: "JustDial",  icon: <MdPhoneInTalk style={{ color: "#03A9F4" }} />, subcategories: [] },
+  { name: "Blog", icon: <FaBlog style={{ color: "#FF9800" }} />, subcategories: [] },
 
 
 
 ];
+
+
 
 const cardData = {
   imgData: [
@@ -123,12 +130,12 @@ function LandingPage() {
 
   return (
     <>
-      <div className="grid grid-cols-[20rem_auto] lg:grid-cols-[20rem_auto] sm:grid-cols-[56rem_auto] h-auto  w-full overflow-hidden bg-gray-100">
+      <div className="flex ">
     
 
         {/* Sidebar */}
         <div
-          className={`w-full  gap-4  hidden bg-white shadow-md mt-4 transition-transform duration-300 ease-in-out ${
+          className={`min-w-72  gap-4  hidden bg-white shadow-md mt-4 transition-transform duration-300 ease-in-out ${
             isSidebarVisible ? "transform-none" : "transform -translate-x-full"
           } lg:transform-none lg:translate-x-0 lg:block fixed lg:relative`}
         >
@@ -147,7 +154,7 @@ function LandingPage() {
                 }}
                 onMouseLeave={() => setHoveredCategory(null)}
               >
-                <span className="text-xl">{category.icon}</span>
+                <span className="text-xl mr-4">{category.icon}</span>
                 <span className="text-sm">{category.name}</span>
                 {category.subcategories.length > 0 && (
                   <span className=" text-gray-500">›  </span>
@@ -212,8 +219,10 @@ function LandingPage() {
         )}
 
         {/* Main Content */}
+        <div className="flex items-center justify-center p-4 rounded shadow-md">
+
         <BannerSlider imgArray={cardData.imgData} tabs={cardData.tabs} />
-      </div>
+      </div></div>
 
       <div className="px-10 py-5">
         <h1 className="text-black text-2xl font-bold mb-3">Best Sellers</h1>

@@ -33,13 +33,14 @@ function Cart() {
                   {/* Item Image and Details */}
                   <div className="flex flex-row items-start sm:items-center gap-4 w-full sm:w-1/2">
                     <img
-                      src={item.image}
+                      src={item.productBanner.secure_url
+                      }
                       alt={item.name}
                       className="w-24 h-auto rounded-md"
                     />
                     <div>
                       <p className="text-lg font-semibold">{item.title}</p>
-                      <p className="text-gray-500">₹{item.originalPrice}</p>
+                      <p className="text-gray-500">₹{item.price}</p>
                       <p className="text-base text-red-500 font-bold flex items-center">
                         <IoIosFlash className="mr-1" />
                         <span>24 hours Delivery</span>
@@ -69,7 +70,7 @@ function Cart() {
                   {/* Price and Action */}
                   <div className="flex flex-row gap-6 sm:flex-row items-center sm:gap-4 mt-4 sm:mt-0">
                     <p className="text-lg font-semibold">
-                      ₹{item.originalPrice * item.quantity}
+                      ₹{item.price * item.quantity}
                     </p>
                     <MdDelete
                       className="text-red-500 cursor-pointer text-xl"

@@ -21,13 +21,13 @@ const BannerSlider = ({ imgArray, tabs }) => {
   const handleBottomImageClick = (index) => sliderRef.current.slickGoTo(index);
 
   return (
-    <div className="flex flex-col items-center w-full mt-4">
+    <div className="grid grid-cols-1 items-center w-full mt-4  ">
       {/* Main Slider */}
-      <div className="w-full gap-4  sm:w-[600px] md:w-[900px] lg:w-[1050px] relative">
+      <div className="w-full gap-4">
         <Slider ref={sliderRef} {...settings}>
           {imgArray.map((item, index) => (
             <img
-              className="rounded-t-lg w-full h-28 lg:h-auto"
+              className="rounded-t-lg w-full h-28 lg:h-auto text-center"
               alt="slide"
               key={index}
               src={item.imgUrl}
@@ -37,12 +37,12 @@ const BannerSlider = ({ imgArray, tabs }) => {
       </div>
 
       {/* Thumbnail Section */}
-      <div className="w-full flex-col gap-1  sm:flex-row lg:flex-row flex text-center overflow-x-hidden">
+      <div className="w-full flex-col gap-1  sm:flex-row lg:flex-row flex text-center overflow-x-hidden ">
         {tabs.map((item, index) => (
           <div
             onMouseEnter={() => handleBottomImageClick(index)}
             key={index}
-            className={`w-full cursor-pointer lg:bg-[#ffffff] ${
+            className={`w-full cursor-pointer lg:bg-[#ffffff]  ${
               currentSlide === index ? "lg:border-b-2 bg-[#96B8EE] lg:bg-[#ffffff]  lg:border-red-500" : ""
             }`}
           >
@@ -59,7 +59,7 @@ const BannerSlider = ({ imgArray, tabs }) => {
 
       
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-4 py-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-4">
   <img
     src="https://cdn.moglix.com/cms/flyout/Image_2024-11-12_10:16:54.389_desktop-gold-candes.jpg"
     alt="Promo 1"

@@ -4,14 +4,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { logout } from "../../features/actions/auth/authAction";
 import { togglesidebar } from "../../features/Slice/CartSlice";
 import { TbLogin2 } from "react-icons/tb";
 
 export default function Header() {
-
-    const dispatch = useDispatch();
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { authenticationData } = useSelector((state) => state.auth);
   const CartData = useSelector((state) => state.cart);
   console.log("cart", CartData);
 
@@ -25,7 +25,7 @@ export default function Header() {
           </Link>
 
           {/* Search Bar - Hidden on mobile, visible on tablet and above */}
-          <div className="hidden border sm:flex items-center flex-1 max-w-md mx-4">
+          <div className="hidden  sm:flex items-center flex-1 max-w-md mx-4">
             <input
               type="search"
               placeholder="Search products..."
@@ -41,6 +41,13 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation - Hidden on mobile and tablet */}
+          {!authenticationData?.email && (
+            <nav className="hidden lg:flex items-center space-x-4">
+         
+      
+            </nav>
+          )}
+          
           <nav className="hidden lg:flex items-center space-x-4">
             <Link
               to="/signIn"
@@ -69,12 +76,14 @@ export default function Header() {
                 </p>
               </button>
             </Link>
-            <Link to="/profile">
-              <FaRegCircleUser className="h-6 w-6 text-gray-600" />
-            </Link>
+            {authenticationData?.email && (
+              <Link to="/profile">
+                <FaRegCircleUser className="h-6 w-6 text-gray-600" />
+              </Link>
+            )}
             <button
               className="lg:hidden text-gray-600 hover:text-[#24B9D7] focus:outline-none focus:ring-2 focus:ring-[#24B9D7] focus:ring-offset-2 p-2 rounded-md"
-              onClick={() => dispatch(togglesidebar())}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -105,7 +114,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
+        {isMobileMenuOpen && !authenticationData?.email && (
           <nav className="lg:hidden mt-4 py-4 border-t border-gray-200">
             <ul className="flex flex-col space-y-2">
               <li>

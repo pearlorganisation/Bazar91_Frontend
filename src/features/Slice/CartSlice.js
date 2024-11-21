@@ -22,7 +22,7 @@ const cartSlice = createSlice({
       }
 
       // Calculate total price after addition
-      state.totalPrice = state.cartData.reduce((total, item) => total + item.originalPrice * item.quantity, 0);
+      state.totalPrice = state.cartData.reduce((total, item) => total + item.price * item.quantity, 0);
       toast.success("Item added to cart!", { position: "top-center" });
     },
     
@@ -37,7 +37,7 @@ const cartSlice = createSlice({
       }
 
       // Calculate total price after decreasing quantity
-      state.totalPrice = state.cartData.reduce((total, item) => total + item.originalPrice * item.quantity, 0);
+      state.totalPrice = state.cartData.reduce((total, item) => total + item.price * item.quantity, 0);
       toast.info("Item quantity decreased", { position: "top-center" });
     },
     removeFromCart: (state, action) => {
@@ -45,7 +45,7 @@ const cartSlice = createSlice({
       state.cartData = state.cartData.filter(item => item.id !== itemId);
 
       // Calculate total price after removal
-      state.totalPrice = state.cartData.reduce((total, item) => total + item.originalPrice * item.quantity, 0);
+      state.totalPrice = state.cartData.reduce((total, item) => total + item.price * item.quantity, 0);
       toast.success("Item removed from cart!", { position: "top-center" });
     },
 
