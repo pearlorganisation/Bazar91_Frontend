@@ -8,7 +8,6 @@ import { logout } from "../../features/actions/auth/authAction";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const dispatch = useDispatch();
   const { authenticationData } = useSelector((state) => state.auth);
   const CartData = useSelector((state) => state.cart);
   console.log("cart", CartData);
