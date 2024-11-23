@@ -36,7 +36,6 @@ const ProductSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.ProductData = action.payload.data;
-        toast.success("getBrands SuccessFull !!");
 
     })
     .addCase(getProducts.rejected,(state,action)=>{

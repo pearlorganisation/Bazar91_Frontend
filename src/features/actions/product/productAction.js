@@ -5,7 +5,7 @@ export const getProducts = createAsyncThunk('product/get', async (_, thunkAPI)=>
     try{
       const { data} = await instance.get('/product');
 
-      console.log(data, "getting products")
+      // console.log(data, "getting products")
 
       return data;
     }catch(error){
@@ -17,7 +17,7 @@ export const getProducts = createAsyncThunk('product/get', async (_, thunkAPI)=>
 export const getProductById = createAsyncThunk('product/getById', async (productId, thunkAPI) => {
   try {
     const { data } = await instance.get(`/product/${productId}`); // Adjust the endpoint to get by ID
-    console.log(data, "getting product by ID");
+    // console.log(data, "getting product by ID");
     return data;
   } catch (error) {
     // Log the error message for easier debugging

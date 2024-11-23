@@ -1,11 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { toast } from "sonner";
-import { getProducts } from "../../actions/product/productAction";
-import { getBrands } from "../../actions/Brand/brandAction";
+import { getBrands } from "../../actions/Brand/brandAction.js";
 
 const initialState = {
-    brandsData: {},
+    brandsData: [],
     isSuccess:false,
     isLoading:false,
     isError:false,
@@ -37,7 +35,6 @@ const brandSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.brandsData = action.payload.data;
-        toast.success("getProducts SuccessFull !!");
 
     })
     .addCase(getBrands.rejected,(state,action)=>{

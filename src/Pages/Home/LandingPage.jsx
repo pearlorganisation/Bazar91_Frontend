@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BannerSlider from "../../components/slider/BannerSlider";
 import Slider from "react-slick";
 import SimpleSlider from "../../components/slider/slider";
@@ -7,87 +7,9 @@ import { GiSewingMachine } from "react-icons/gi";
 import { MdOutlineBrush, MdPhoneInTalk } from "react-icons/md";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { RiScissorsCutLine } from "react-icons/ri";
-const categories = [
-  {
-    name: "All Brands",
-    icon: <AiOutlineAppstore style={{ color: "#4CAF50" }} />, // Green color
-    subcategories: [
-      {
-        name: "Bernena",
-        items: [
-          "Ink Tank Printer",
-          "Laser Printer",
-          "Inkjet Printer",
-          "Thermal Printer",
-          "Barcode Printers",
-        ],
-      },
-      { name: "Brothers", items: [] },
-      { name: "Bruce", items: [] },
-      { name: "Butterfly", items: [] },
-      { name: "Fortever", items: [] },
-      { name: "Futton", items: [] },
-      { name: "Generic", items: [] },
-    ],
-  },
-  {
-    name: "Sewing Machine",
-    icon: <GiSewingMachine style={{ color: "#FF5722" }} />, // Orange color
-    subcategories: [
-      {
-        name: "Industrial",
-        items: [
-          "Ink Tank Printer",
-          "Laser Printer",
-          "Inkjet Printer",
-          "Thermal Printer",
-          "Barcode Printers",
-        ],
-      },
-      { name: "Sewing Accessories", items: [] },
-      { name: "Home Demo", items: [] },
-      { name: "Sewing Classes", items: [] },
-      { name: "FlatLock", items: [] },
-    ],
-  },
-  {
-    name: "Sewing Embroidery",
-    icon: <RiScissorsCutLine style={{ color: "#2196F3" }} />, // Blue color
-    subcategories: [
-      {
-        name: "Industrial",
-        items: [
-          "Ink Tank Printer",
-          "Laser Printer",
-          "Inkjet Printer",
-          "Thermal Printer",
-          "Barcode Printers",
-        ],
-      },
-      { name: "Sewing Accessories", items: [] },
-      { name: "Home Demo", items: [] },
-      { name: "Sewing Classes", items: [] },
-      { name: "FlatLock", items: [] },
-    ],
-  },
-  {
-    name: "Embroidery Design Life",
-    icon: <MdOutlineBrush style={{ color: "#9C27B0" }} />,
-    subcategories: [
-      { name: "Free Design", items: [] },
-      { name: "Paid Design", items: [] },
-      { name: "All Design", items: [] },
-      { name: "Software", items: [] },
-    ],
-  },
-  { name: "Videos",  icon: <FaVideo style={{ color: "#B91D1D" }} />, subcategories: [] },
-  { name: "India Mart",   icon: <FaStore style={{ color: "#2196F3" }} />, subcategories: [] },
-  { name: "JustDial",  icon: <MdPhoneInTalk style={{ color: "#03A9F4" }} />, subcategories: [] },
-  { name: "Blog", icon: <FaBlog style={{ color: "#FF9800" }} />, subcategories: [] },
+import { useDispatch, useSelector } from "react-redux";
+import { getBrands } from "../../features/actions/Brand/brandAction";
 
-
-
-];
 
 
 
@@ -127,6 +49,91 @@ function LandingPage() {
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [hoveredSubcategory, setHoveredSubcategory] = useState(null);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const dispatch = useDispatch();
+  const {brandsData} = useSelector((state)=> state.brands);
+
+  const categories = [
+    {
+      name: "All Brands",
+      icon: <AiOutlineAppstore style={{ color: "#4CAF50" }} />, // Green color
+      subcategories: brandsData
+      // [
+        // {
+        //   name: "Bernena",
+        //   items: [
+        //     "Ink Tank Printer",
+        //     "Laser Printer",
+        //     "Inkjet Printer",
+        //     "Thermal Printer",
+        //     "Barcode Printers",
+        //   ],
+        // },
+        // { name: "Brothers", items: [] },
+        // { name: "Bruce", items: [] },
+        // { name: "Butterfly", items: [] },
+        // { name: "Fortever", items: [] },
+        // { name: "Futton", items: [] },
+        // { name: "Generic", items: [] },
+      // ],
+    },
+    {
+      name: "Sewing Machine",
+      icon: <GiSewingMachine style={{ color: "#FF5722" }} />, // Orange color
+      subcategories: [
+        {
+          title: "Industrial",
+          items: [
+            // "Ink Tank Printer",
+            // "Laser Printer",
+            // "Inkjet Printer",
+            // "Thermal Printer",
+            // "Barcode Printers",
+          ],
+        },
+        { title: "Sewing Accessories", items: [] },
+        { title: "Home Demo", items: [] },
+        { title: "Sewing Classes", items: [] },
+        { title: "FlatLock", items: [] },
+      ],
+    },
+    {
+      name: "Sewing Embroidery",
+      icon: <RiScissorsCutLine style={{ color: "#2196F3" }} />, // Blue color
+      subcategories: [
+        {
+          title: "Industrial",
+          items: [],
+        },
+        { title: "Sewing Accessories", items: [] },
+        { title: "Home Demo", items: [] },
+        { title: "Sewing Classes", items: [] },
+        { title: "FlatLock", items: [] },
+      ],
+    },
+    {
+      name: "Embroidery Design Life",
+      icon: <MdOutlineBrush style={{ color: "#9C27B0" }} />,
+      subcategories: [
+        { title: "Free Design", items: [] },
+        { title: "Paid Design", items: [] },
+        { title: "All Design", items: [] },
+        { title: "Software", items: [] },
+      ],
+    },
+    { name: "Videos",  icon: <FaVideo style={{ color: "#B91D1D" }} />, subcategories: [] },
+    { name: "India Mart",   icon: <FaStore style={{ color: "#2196F3" }} />, subcategories: [] },
+    { name: "JustDial",  icon: <MdPhoneInTalk style={{ color: "#03A9F4" }} />, subcategories: [] },
+    { name: "Blog", icon: <FaBlog style={{ color: "#FF9800" }} />, subcategories: [] },
+  
+  
+  
+  ];
+
+  useEffect(()=>{
+    dispatch(getBrands());
+  },[]);
+
+
 
   return (
     <>
@@ -140,22 +147,22 @@ function LandingPage() {
           } lg:transform-none lg:translate-x-0 lg:block fixed lg:relative`}
         >
           <ul>
-            {categories.map((category, index) => (
+            {categories?.map((category, index) => (
               <li
                 key={index}
                 className={`flex items-center px-1 py-2 rounded hover:bg-gray-200 cursor-pointer ${
                   category.isHighlighted
                     ? "text-red-500 font-semibold"
                     : "text-gray-700"
-                } ${hoveredCategory === category.name ? "bg-gray-200" : ""}`}
+                } ${hoveredCategory === category?.title ? "bg-gray-200" : ""}`}
                 onMouseEnter={() => {
-                  setHoveredCategory(category.name);
+                  setHoveredCategory(category?.name);
                   setHoveredSubcategory(null);
                 }}
                 onMouseLeave={() => setHoveredCategory(null)}
               >
                 <span className="text-xl mr-4">{category.icon}</span>
-                <span className="text-sm">{category.name}</span>
+                <span className="text-sm">{category?.name}</span>
                 {category.subcategories.length > 0 && (
                   <span className=" text-gray-500">›  </span>
                 )}
@@ -182,13 +189,13 @@ function LandingPage() {
                         ? "bg-gray-200"
                         : ""
                     }`}
-                    onMouseEnter={() => setHoveredSubcategory(subcategory.name)}
+                    onMouseEnter={() => setHoveredSubcategory(subcategory?.title)}
                     onMouseLeave={() => setHoveredSubcategory(null)}
                   >
                     <span className="text-sm text-gray-700">
-                      {subcategory.name}
+                      {subcategory?.title}
                     </span>
-                    {subcategory.items.length > 0 && (
+                    {subcategory?.items?.length > 0 && (
                       <span className="ml-auto text-gray-500">›</span>
                     )}
                   </li>
@@ -202,9 +209,9 @@ function LandingPage() {
           <div className="w-1/4 bg-gray-50 shadow-md absolute top-0  left-[40%] mt-[90px] z-20">
             <ul>
               {categories
-                .find((category) => category.name === hoveredCategory)
+                .find((category) => category?.name === hoveredCategory)
                 ?.subcategories.find(
-                  (subcat) => subcat.name === hoveredSubcategory
+                  (subcat) => subcat?.name === hoveredSubcategory
                 )
                 ?.items.map((item, index) => (
                   <li
