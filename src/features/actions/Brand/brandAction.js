@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { asyncHandler } from "../../../../../Bazar91_Backend/util/asyncHandler";
 import { instance } from "../../../../services/axiosInterceptor";
 
 export const getBrands= createAsyncThunk('brand/get', async (_, thunkAPI)=> {

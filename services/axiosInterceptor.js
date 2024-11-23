@@ -18,7 +18,6 @@
       }`
   });
 
-  console.log("shashank",import.meta.env.VITE_APP_API_BASE_DEVELOPMENT_ENVIRONMENT)
 
   instance.interceptors.request.use(
       (config)=>{
