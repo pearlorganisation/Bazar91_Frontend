@@ -4,6 +4,8 @@ import CartSlice from "./Slice/CartSlice";
 import { encryptTransform } from 'redux-persist-transform-encrypt';
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
+import ProductSlice from "./Slice/Product/ProductSlice";
+import brandSlice from "./Slice/BrandSlice/brandSlice";
 
 
 
@@ -25,7 +27,9 @@ const persistConfig = {
 
 const reducer = combineReducers({
   cart: CartSlice,
-  auth: authSlice
+  auth: authSlice,
+  product:ProductSlice,
+  brands:brandSlice
 })
 
 //this would clear whole got dam redux data along with local storage data 

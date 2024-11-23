@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { logout } from "../../features/actions/auth/authAction";
+import { togglesidebar } from "../../features/Slice/CartSlice";
+import { TbLogin2 } from "react-icons/tb";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,22 +42,25 @@ export default function Header() {
           {/* Desktop Navigation - Hidden on mobile and tablet */}
           {!authenticationData?.email && (
             <nav className="hidden lg:flex items-center space-x-4">
-              <Link
-                to="/signIn"
-                className="text-gray-600 hover:text-[#24B9D7] font-medium"
-              >
-                Login
-              </Link>
-
-              <Link
-                to="/signUp"
-                className="bg-[#24B9D7] text-white px-4 py-2 rounded-md hover:bg-[#24B9D7] focus:outline-none focus:ring-2 focus:ring-[#24B9D7] focus:ring-offset-2"
-              >
-                Sign Up
-              </Link>
+         
+      
             </nav>
           )}
           
+          <nav className="hidden lg:flex items-center space-x-4">
+            <Link
+              to="/signIn"
+              className="text-gray-600 hover:text-[#24B9D7] font-medium flex flex-row items-center"
+            >
+            <div><TbLogin2 size={30} className="text-gray-600 hover:text-[#24B9D7] font-medium" /></div> <div className="text-gray-600 hover:text-[#24B9D7] font-medium text-xl ">Login</div>
+            </Link>
+            <Link
+              to="/signUp"
+              className="bg-[#24B9D7] text-white px-4 py-2 rounded-md hover:bg-[#24B9D7] focus:outline-none focus:ring-2 focus:ring-[#24B9D7] focus:ring-offset-2"
+            >
+              Sign Up
+            </Link>
+          </nav>
 
           {/* Cart and Mobile Menu Icons - Always visible */}
           <div className="flex items-center space-x-4   relative">
