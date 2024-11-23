@@ -33,8 +33,7 @@ function Cart() {
                   {/* Item Image and Details */}
                   <div className="flex flex-row items-start sm:items-center gap-4 w-full sm:w-1/2">
                     <img
-                      src={item.productBanner.secure_url
-                      }
+                      src={item.productBanner.secure_url}
                       alt={item.name}
                       className="w-24 h-auto rounded-md"
                     />
@@ -97,11 +96,11 @@ function Cart() {
             <div className="flex flex-col space-y-4 p-4 bg-white">
               <div className="flex justify-between items-center">
                 <span>Total Amount</span>
-                <span>₹1,753.00</span>
+                <span>₹{totalPrice} </span>
               </div>
               <div className="flex justify-between items-center">
-                <span>Total GST</span>
-                <span>₹316.00</span>
+                <span>Total GST (18%)</span>
+                <span>₹{(totalPrice * 0.18).toFixed(2)}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span>Total Shipping</span>
@@ -114,7 +113,7 @@ function Cart() {
               <hr className="border-t border-gray-300 my-4" />
               <div className="flex justify-between items-center font-bold">
                 <span className="text-[#3C3C3C]">Amount Payable</span>
-                <span>₹2,069.00</span>
+                <span>₹{(totalPrice * 1.18).toFixed(2)}</span>
               </div>
             </div>
           </div>

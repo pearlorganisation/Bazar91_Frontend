@@ -21,11 +21,12 @@ const ProductDetail = () => {
   // Fetch product details
   useEffect(() => {
     dispatch(getProductById(id)).then((res) => {
-      console.log("first",res)
+      console.log("first", res);
       if (res?.payload?.success) {
-        setMainImage(res?.payload?.data?.productBanner?.secure_url || "default.png");
+        setMainImage(
+          res?.payload?.data?.productBanner?.secure_url || "default.png"
+        );
       }
-      
     });
   }, [id, dispatch]);
 
@@ -77,35 +78,40 @@ const ProductDetail = () => {
       {/* Right Column: Product Details */}
       <div className="w-full lg:w-3/5 space-y-4">
         {/* Product Title */}
-        <h2 className="text-2xl font-bold">{ProductData.productTitle}</h2>
+        <h2 className="text-2xl font-bold">{ProductData?.productTitle}</h2>
+
+        <h1 className="">
+          Brand :
+          <span className="text-orange-500">{ProductData?.brand?.title}</span>
+        </h1>
 
         {/* Rating */}
         <div className="flex items-center gap-2 text-green-600">
           <span className="font-bold">4.6</span>
-          <span>({ProductData.reviews || 0} Reviews)</span>
+          <span>({ProductData?.reviews || 0} Reviews)</span>
         </div>
 
         {/* Pricing */}
         <div className="flex items-center gap-4">
           <span className="text-3xl font-bold text-blue-600">
-            ₹{ProductData.price}
+            ₹{ProductData.discountedPrice}
           </span>
           <span className="text-gray-500 line-through">
-            ₹{ProductData.originalPrice}
+            ₹{ProductData.price}
           </span>
           <span className="text-green-600 font-semibold">
-            {ProductData.discount}
+            {ProductData.discount}%
           </span>
         </div>
 
         {/* Power Input Options */}
-        <div className="space-x-2">
+        {/* <div className="space-x-2">
           {["900W", "750W", "850W"].map((power) => (
             <button key={power} className="px-3 py-1 border rounded-lg">
               {power}
             </button>
           ))}
-        </div>
+        </div> */}
 
         {/* Quantity Selector */}
         <div className="flex items-center gap-4">
@@ -141,12 +147,11 @@ const ProductDetail = () => {
 
         {/* Delivery Details */}
         <div className="border p-4 rounded-lg space-y-4 bg-[#FFFFFF] pl-10">
-        <div
-       
-      >
-        {ProductData?.productDescription && parse(ProductData?.productDescription)}
-        {ProductData?.productDetails &&  parse(ProductData?.productDetails)}
-    </div>
+          <div>
+            {ProductData?.productDescription &&
+              parse(ProductData?.productDescription)}
+            {ProductData?.productDetails && parse(ProductData?.productDetails)}
+          </div>
           <span>
             <span
               className="text-blue-500 cursor-pointer"
