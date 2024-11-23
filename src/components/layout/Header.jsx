@@ -12,7 +12,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { authenticationData } = useSelector((state) => state.auth);
   const CartData = useSelector((state) => state.cart);
-  console.log("cart", CartData);
+  // console.log("cart", CartData);
 
   return (
     <header className="sticky top-0 bg-white shadow-md z-50">
