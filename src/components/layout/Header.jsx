@@ -47,7 +47,7 @@ export default function Header() {
             </nav>
           )}
           
-          <nav className="hidden lg:flex items-center space-x-4">
+         {!authenticationData?.email && <nav className="hidden lg:flex items-center space-x-4">
             <Link
               to="/signIn"
               className="text-gray-600 hover:text-[#24B9D7] font-medium flex flex-row items-center"
@@ -61,7 +61,7 @@ export default function Header() {
               Sign Up
             </Link>
           </nav>
-
+}
           {/* Cart and Mobile Menu Icons - Always visible */}
           <div className="flex items-center space-x-4   relative">
             <Link to="/cart">
